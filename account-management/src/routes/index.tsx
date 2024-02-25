@@ -1,12 +1,8 @@
 import React, { lazy } from "react";
 import { Route, Routes as RouteList } from "react-router";
-import Admin from "../pages/admin";
+const Admin = lazy(() => import('../pages/admin'));
 
-interface RoutesProps {
-  children?: React.ReactNode;
-}
-
-const Routes = (props: RoutesProps) => {
+const Routes = () => {
   return (
     <RouteList>
       <Route path="/admin" element={<Admin />} />
