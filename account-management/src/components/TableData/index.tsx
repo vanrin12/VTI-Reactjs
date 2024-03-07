@@ -13,7 +13,7 @@ const TableData = ({ listTableHead, listData }: TableDataProps) => {
     <Table>
       <TableHead thItems={listTableHead} />
       <tbody>
-        {listData.map((data: Record<string, any>) => (
+        {listData?.map((data: Record<string, any>) => (
           <TableRow key={data.id} rowItem={data} />
         ))}
       </tbody>
