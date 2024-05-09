@@ -1,12 +1,14 @@
 import { configureStore } from '@reduxjs/toolkit'
 import accountReducer from '../redux/account';
+import productReducer from '../redux/product';
 import createSagaMiddleware from 'redux-saga';
 import rootSagas from './rootSagas'
 const sagaMiddleware: any  = createSagaMiddleware();
 
 export const store = configureStore({
   reducer: {
-    account: accountReducer
+    account: accountReducer,
+    product: productReducer
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(sagaMiddleware),

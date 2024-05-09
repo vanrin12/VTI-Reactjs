@@ -25,8 +25,6 @@ export const accountSlice = createSlice({
       state: AccountState,
       action: any,
     ) => {
-      console.log('action', action);
-      
       state.type = action.type;
       state.accounts = action.data;
       state.isProcessing = false;
@@ -36,11 +34,29 @@ export const accountSlice = createSlice({
       state.type = action.type;
       state.isProcessing = false;
     },
+
+    createAccount: (state: AccountState) => {
+      state.isProcessing = true;
+    },
+
+    createAccountSuccess: (
+      state: AccountState,
+      action: any,
+    ) => {
+      state.type = action.type;
+      state.accounts = [action.data, ...state.accounts];
+      state.isProcessing = false;
+    },
+
+    createAccountFailed: (state: AccountState, action: PayloadAction<any>) => {
+      state.type = action.type;
+      state.isProcessing = false;
+    },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { getAccountList, getAccountListSuccess, getAccountListFailed } =
+export const { getAccountList, getAccountListSuccess, getAccountListFailed, createAccount, createAccountSuccess, createAccountFailed } =
   accountSlice.actions;
 
 export default accountSlice.reducer;

@@ -1,7 +1,9 @@
 import { all } from 'redux-saga/effects';
-import getAccountListSaga from '../sagas';
+import { getAccountListSaga, createAccountSaga, getProductListListSaga } from '../sagas';
 
 export default function* RootSagas() {
     yield all([
-        getAccountListSaga()
+        getAccountListSaga(),
+        createAccountSaga(),
+        getProductListListSaga()
     ])}

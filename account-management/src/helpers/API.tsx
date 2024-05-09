@@ -16,14 +16,13 @@ const config: Params = {
     username: process.env.REACT_APP_AUTH_USER || '',
     password: process.env.REACT_APP_AUTH_PASSWORD || '',
   },
-
   method: 'post',
 };
 
 export const postAPI = async (url: string, data: any): Promise<any> => {
   const postConfig = {
     ...config,
-    method: 'post',
+    method: 'POST',
   };
   return await axios({
     ...postConfig,
