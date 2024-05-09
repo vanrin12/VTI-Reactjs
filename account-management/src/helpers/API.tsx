@@ -12,7 +12,10 @@ interface Params {
 
 const config: Params = {
   baseUrl: process.env.REACT_APP_API_URL || '',
-  auth: { username: 'admin', password: '123456' },
+  auth: {
+    username: process.env.REACT_APP_AUTH_USER || '',
+    password: process.env.REACT_APP_AUTH_PASSWORD || '',
+  },
 
   method: 'post',
 };

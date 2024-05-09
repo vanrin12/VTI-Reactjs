@@ -1,30 +1,24 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import Button from 'react-bootstrap/Button';
 import TableData from '../../components/TableData';
-import { getAPI } from '../../helpers/API';
 import { ACCOUNT_TABLE_HEAD } from '../../constants';
+import { getAccountList } from '../../redux/account';
+import { useDispatch, useSelector } from 'react-redux';
 
 const Admin = () => {
-  const [listDataTable, setListDataTable] = useState([]);
-
+  const dispatch = useDispatch();
+  const { accounts } = useSelector((state: any) => state?.account);
   useEffect(() => {
-    const getListProduct = async () => {
-      const res = await getAPI('accounts');
-      setListDataTable(res.data);
-    };
-    getListProduct();
+    dispatch(getAccountList());
   }, []);
 
-  console.log('listDataTable', listDataTable);
+  console.log('accounts', accounts);
 
   return (
     <div className="container-fluid pt-4">
       <Button variant="primary">Add Product</Button>
-      {listDataTable ? (
-        <TableData
-          listTableHead={ACCOUNT_TABLE_HEAD}
-          listData={listDataTable}
-        />
+      {accounts ? (
+        <TableData listTableHead={ACCOUNT_TABLE_HEAD} listData={accounts} />
       ) : (
         'No data'
       )}
